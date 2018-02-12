@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.my.dao.UserDao" >
+    <resultMap id="BaseResultMap" type="com.cn.my.bean.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="userid" property="userid" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="question" property="question" jdbcType="VARCHAR" />
+        <result column="answer" property="answer" jdbcType="VARCHAR" />
+        <result column="createBy" property="createBy" jdbcType="VARCHAR" />
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+        <result column="lastupdataby" property="lastupdataby" jdbcType="VARCHAR" />
+        <result column="lastupdatadate" property="lastupdatadate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, userid, username, password, question, answer,createBy,createdate,lastupdataby,lastupdatadate
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.cn.my.bean.User" >
+        insert into user (id, userid, username,
+        password, question, answer,
+        createBy, createdate, lastupdataby,
+        lastupdatadate)
+        values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR},
+        #{createBy,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{lastupdataby,jdbcType=VARCHAR},
+        #{lastupdatadate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.cn.my.bean.User" >
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="userid != null" >
+                userid,
+            </if>
+            <if test="username != null" >
+                username,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="question != null" >
+                question,
+            </if>
+            <if test="answer != null" >
+                answer,
+            </if>
+            <if test="createBy != null" >
+                createBy,
+            </if>
+            <if test="createdate != null" >
+                createdate,
+            </if>
+            <if test="lastupdataby != null" >
+                lastupdataby,
+            </if>
+            <if test="lastupdatadate != null" >
+                lastupdatadate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null" >
+                #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="question != null" >
+                #{question,jdbcType=VARCHAR},
+            </if>
+            <if test="answer != null" >
+                #{answer,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null" >
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastupdataby != null" >
+                #{lastupdataby,jdbcType=VARCHAR},
+            </if>
+            <if test="lastupdatadate != null" >
+                #{lastupdatadate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.User" >
+        update user
+        <set >
+            <if test="userid != null" >
+                userid = #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="question != null" >
+                question = #{question,jdbcType=VARCHAR},
+            </if>
+            <if test="answer != null" >
+                answer = #{answer,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null" >
+                createBy = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null" >
+                createdate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastupdataby != null" >
+                lastupdataby = #{lastupdataby,jdbcType=VARCHAR},
+            </if>
+            <if test="lastupdatadate != null" >
+                lastupdatadate = #{lastupdatadate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cn.my.bean.User" >
+        update user
+        set userid = #{userid,jdbcType=VARCHAR},
+        username = #{username,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        question = #{question,jdbcType=VARCHAR},
+        answer = #{answer,jdbcType=VARCHAR},
+        createBy = #{createBy,jdbcType=VARCHAR},
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+        lastupdataby = #{lastupdataby,jdbcType=VARCHAR},
+        lastupdatadate = #{lastupdatadate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="finAllUsersCount" resultType="int">
+        select count(*) from user  where
+        1=1
+        <if test="username!= null">
+            and username like CONCAT('%','${username}','%' )
+        </if>
+    </select>
+
+    <select id="finAllUsers" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where
+        1=1
+
+        <if test="username!= null">
+            and username like CONCAT('%','${username}','%' )
+        </if>
+        <!--
+         <if test="lastupdatadate != null" >
+             and username=#{username,jdbcType=VARCHAR}
+         </if>
+         -->
+        limit #{page,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}
+    </select>
+
+    <resultMap id="userMap" type="com.cn.my.bean.User">
+        <id property="id" column="ID"/>
+        <result property="username" column="username"/>
+        <result property="password" column="PASSWORD"/>
+        <collection property="roles" ofType="com.cn.my.bean.Role">
+            <result column="name" property="name"/>
+        </collection>
+
+    </resultMap>
+    <select id="findByUserName" parameterType="String" resultMap="userMap">
+         select u.*,r.name
+        from Sys_User u
+        LEFT JOIN sys_user_roles sru on u.id= sru.Sys_User_id
+        LEFT JOIN Sys_Role r on sru.Roles_id=r.id
+        where username= #{username}
+    </select>
+
+    <select id="isExistUser" resultType="int">
+        select count(*) from user
+        where username=#{page,jdbcType=VARCHAR}
+        and password=username=#{rows,jdbcType=VARCHAR}
+    </select>
+</mapper>

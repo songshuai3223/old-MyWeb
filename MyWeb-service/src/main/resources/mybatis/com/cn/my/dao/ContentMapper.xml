@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.my.dao.ContentMapper">
+  <resultMap id="BaseResultMap" type="com.cn.my.bean.Content">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="jumpurl" jdbcType="VARCHAR" property="jumpurl" />
+    <result column="etitle" jdbcType="VARCHAR" property="etitle" />
+    <result column="click" jdbcType="INTEGER" property="click" />
+    <result column="vid" jdbcType="INTEGER" property="vid" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="istop" jdbcType="BIT" property="istop" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+    <result column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="seo_title" jdbcType="VARCHAR" property="seoTitle" />
+    <result column="seo_keywords" jdbcType="VARCHAR" property="seoKeywords" />
+    <result column="seo_desc" jdbcType="VARCHAR" property="seoDesc" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="top" jdbcType="BIT" property="top" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cid, mid, title, jumpurl, etitle, click, vid, sort, istop, create_time, update_time, 
+    aid, seo_title, seo_keywords, seo_desc, area, top, pic, tag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.my.bean.Content">
+    insert into t_content (id, cid, mid, 
+      title, jumpurl, etitle, 
+      click, vid, sort, istop, 
+      create_time, update_time, aid, 
+      seo_title, seo_keywords, seo_desc, 
+      area, top, pic, tag
+      )
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{jumpurl,jdbcType=VARCHAR}, #{etitle,jdbcType=VARCHAR}, 
+      #{click,jdbcType=INTEGER}, #{vid,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, #{istop,jdbcType=BIT}, 
+      #{createTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, 
+      #{seoTitle,jdbcType=VARCHAR}, #{seoKeywords,jdbcType=VARCHAR}, #{seoDesc,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{top,jdbcType=BIT}, #{pic,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.my.bean.Content">
+    insert into t_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="jumpurl != null">
+        jumpurl,
+      </if>
+      <if test="etitle != null">
+        etitle,
+      </if>
+      <if test="click != null">
+        click,
+      </if>
+      <if test="vid != null">
+        vid,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="istop != null">
+        istop,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="seoTitle != null">
+        seo_title,
+      </if>
+      <if test="seoKeywords != null">
+        seo_keywords,
+      </if>
+      <if test="seoDesc != null">
+        seo_desc,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="top != null">
+        top,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="jumpurl != null">
+        #{jumpurl,jdbcType=VARCHAR},
+      </if>
+      <if test="etitle != null">
+        #{etitle,jdbcType=VARCHAR},
+      </if>
+      <if test="click != null">
+        #{click,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null">
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="istop != null">
+        #{istop,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="seoTitle != null">
+        #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null">
+        #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDesc != null">
+        #{seoDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        #{top,jdbcType=BIT},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.Content">
+    update t_content
+    <set>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null">
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="jumpurl != null">
+        jumpurl = #{jumpurl,jdbcType=VARCHAR},
+      </if>
+      <if test="etitle != null">
+        etitle = #{etitle,jdbcType=VARCHAR},
+      </if>
+      <if test="click != null">
+        click = #{click,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null">
+        vid = #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="istop != null">
+        istop = #{istop,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="seoTitle != null">
+        seo_title = #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null">
+        seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDesc != null">
+        seo_desc = #{seoDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        top = #{top,jdbcType=BIT},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.my.bean.Content">
+    update t_content
+    set cid = #{cid,jdbcType=INTEGER},
+      mid = #{mid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      jumpurl = #{jumpurl,jdbcType=VARCHAR},
+      etitle = #{etitle,jdbcType=VARCHAR},
+      click = #{click,jdbcType=INTEGER},
+      vid = #{vid,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      istop = #{istop,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER},
+      aid = #{aid,jdbcType=INTEGER},
+      seo_title = #{seoTitle,jdbcType=VARCHAR},
+      seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+      seo_desc = #{seoDesc,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      top = #{top,jdbcType=BIT},
+      pic = #{pic,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

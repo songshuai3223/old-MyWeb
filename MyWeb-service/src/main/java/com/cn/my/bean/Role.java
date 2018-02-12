@@ -4,7 +4,7 @@ package com.cn.my.bean;
 /**
  * Created by sang on 2017/1/10.
  */
-public class SysRole {
+public class Role {
 
     private Integer id;
     private String name;

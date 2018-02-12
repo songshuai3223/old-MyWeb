@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.my.dao.AreaMapper">
+  <resultMap id="BaseResultMap" type="com.cn.my.bean.Area">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="stitle" jdbcType="VARCHAR" property="stitle" />
+    <result column="etitle" jdbcType="VARCHAR" property="etitle" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="istop" jdbcType="BIT" property="istop" />
+    <result column="iscon" jdbcType="BIT" property="iscon" />
+    <result column="isurl" jdbcType="BIT" property="isurl" />
+    <result column="seo_title" jdbcType="VARCHAR" property="seoTitle" />
+    <result column="seo_keywords" jdbcType="VARCHAR" property="seoKeywords" />
+    <result column="seo_description" jdbcType="VARCHAR" property="seoDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, stitle, etitle, pid, sort, istop, iscon, isurl, seo_title, seo_keywords, 
+    seo_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.my.bean.Area">
+    insert into t_area (id, title, stitle, 
+      etitle, pid, sort, 
+      istop, iscon, isurl, seo_title, 
+      seo_keywords, seo_description)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{stitle,jdbcType=VARCHAR}, 
+      #{etitle,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
+      #{istop,jdbcType=BIT}, #{iscon,jdbcType=BIT}, #{isurl,jdbcType=BIT}, #{seoTitle,jdbcType=VARCHAR}, 
+      #{seoKeywords,jdbcType=VARCHAR}, #{seoDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.my.bean.Area">
+    insert into t_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="stitle != null">
+        stitle,
+      </if>
+      <if test="etitle != null">
+        etitle,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="istop != null">
+        istop,
+      </if>
+      <if test="iscon != null">
+        iscon,
+      </if>
+      <if test="isurl != null">
+        isurl,
+      </if>
+      <if test="seoTitle != null">
+        seo_title,
+      </if>
+      <if test="seoKeywords != null">
+        seo_keywords,
+      </if>
+      <if test="seoDescription != null">
+        seo_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="stitle != null">
+        #{stitle,jdbcType=VARCHAR},
+      </if>
+      <if test="etitle != null">
+        #{etitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="istop != null">
+        #{istop,jdbcType=BIT},
+      </if>
+      <if test="iscon != null">
+        #{iscon,jdbcType=BIT},
+      </if>
+      <if test="isurl != null">
+        #{isurl,jdbcType=BIT},
+      </if>
+      <if test="seoTitle != null">
+        #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null">
+        #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDescription != null">
+        #{seoDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.Area">
+    update t_area
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="stitle != null">
+        stitle = #{stitle,jdbcType=VARCHAR},
+      </if>
+      <if test="etitle != null">
+        etitle = #{etitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="istop != null">
+        istop = #{istop,jdbcType=BIT},
+      </if>
+      <if test="iscon != null">
+        iscon = #{iscon,jdbcType=BIT},
+      </if>
+      <if test="isurl != null">
+        isurl = #{isurl,jdbcType=BIT},
+      </if>
+      <if test="seoTitle != null">
+        seo_title = #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null">
+        seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDescription != null">
+        seo_description = #{seoDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.my.bean.Area">
+    update t_area
+    set title = #{title,jdbcType=VARCHAR},
+      stitle = #{stitle,jdbcType=VARCHAR},
+      etitle = #{etitle,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      istop = #{istop,jdbcType=BIT},
+      iscon = #{iscon,jdbcType=BIT},
+      isurl = #{isurl,jdbcType=BIT},
+      seo_title = #{seoTitle,jdbcType=VARCHAR},
+      seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+      seo_description = #{seoDescription,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.my.dao.DiyImageMapper">
+  <resultMap id="BaseResultMap" type="com.cn.my.bean.DiyImage">
+    <id column="conid" jdbcType="INTEGER" property="conid" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cn.my.bean.DiyImage">
+    <result column="piclist" jdbcType="LONGVARCHAR" property="piclist" />
+    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    conid
+  </sql>
+  <sql id="Blob_Column_List">
+    piclist, desc, content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_diy_image
+    where conid = #{conid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_diy_image
+    where conid = #{conid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.my.bean.DiyImage">
+    insert into t_diy_image (conid, piclist, desc, 
+      content)
+    values (#{conid,jdbcType=INTEGER}, #{piclist,jdbcType=LONGVARCHAR}, #{desc,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.my.bean.DiyImage">
+    insert into t_diy_image
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="conid != null">
+        conid,
+      </if>
+      <if test="piclist != null">
+        piclist,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="conid != null">
+        #{conid,jdbcType=INTEGER},
+      </if>
+      <if test="piclist != null">
+        #{piclist,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.DiyImage">
+    update t_diy_image
+    <set>
+      <if test="piclist != null">
+        piclist = #{piclist,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where conid = #{conid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.my.bean.DiyImage">
+    update t_diy_image
+    set piclist = #{piclist,jdbcType=LONGVARCHAR},
+      desc = #{desc,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where conid = #{conid,jdbcType=INTEGER}
+  </update>
+</mapper>

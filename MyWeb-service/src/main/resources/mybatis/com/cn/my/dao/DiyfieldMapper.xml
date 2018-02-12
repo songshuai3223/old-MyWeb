@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.my.dao.DiyfieldMapper">
+  <resultMap id="BaseResultMap" type="com.cn.my.bean.Diyfield">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+    <result column="ftype" jdbcType="VARCHAR" property="ftype" />
+    <result column="defval" jdbcType="VARCHAR" property="defval" />
+    <result column="isnotnull" jdbcType="BIT" property="isnotnull" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="length" jdbcType="INTEGER" property="length" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cn.my.bean.Diyfield">
+    <result column="values" jdbcType="LONGVARCHAR" property="values" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, title, field, ftype, defval, isnotnull, remark, type, sort, length
+  </sql>
+  <sql id="Blob_Column_List">
+    values
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_diyfield
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_diyfield
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.my.bean.Diyfield">
+    insert into t_diyfield (id, mid, title, 
+      field, ftype, defval, 
+      isnotnull, remark, type, sort, 
+      length, values)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{field,jdbcType=VARCHAR}, #{ftype,jdbcType=VARCHAR}, #{defval,jdbcType=VARCHAR}, 
+      #{isnotnull,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, 
+      #{length,jdbcType=INTEGER}, #{values,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.my.bean.Diyfield">
+    insert into t_diyfield
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="field != null">
+        field,
+      </if>
+      <if test="ftype != null">
+        ftype,
+      </if>
+      <if test="defval != null">
+        defval,
+      </if>
+      <if test="isnotnull != null">
+        isnotnull,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="length != null">
+        length,
+      </if>
+      <if test="values != null">
+        values,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="ftype != null">
+        #{ftype,jdbcType=VARCHAR},
+      </if>
+      <if test="defval != null">
+        #{defval,jdbcType=VARCHAR},
+      </if>
+      <if test="isnotnull != null">
+        #{isnotnull,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=INTEGER},
+      </if>
+      <if test="values != null">
+        #{values,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.Diyfield">
+    update t_diyfield
+    <set>
+      <if test="mid != null">
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        field = #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="ftype != null">
+        ftype = #{ftype,jdbcType=VARCHAR},
+      </if>
+      <if test="defval != null">
+        defval = #{defval,jdbcType=VARCHAR},
+      </if>
+      <if test="isnotnull != null">
+        isnotnull = #{isnotnull,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="values != null">
+        values = #{values,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.my.bean.Diyfield">
+    update t_diyfield
+    set mid = #{mid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      field = #{field,jdbcType=VARCHAR},
+      ftype = #{ftype,jdbcType=VARCHAR},
+      defval = #{defval,jdbcType=VARCHAR},
+      isnotnull = #{isnotnull,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      length = #{length,jdbcType=INTEGER},
+      values = #{values,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.my.bean.Diyfield">
+    update t_diyfield
+    set mid = #{mid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      field = #{field,jdbcType=VARCHAR},
+      ftype = #{ftype,jdbcType=VARCHAR},
+      defval = #{defval,jdbcType=VARCHAR},
+      isnotnull = #{isnotnull,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      length = #{length,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

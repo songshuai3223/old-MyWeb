@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.my.dao.DiyformMapper">
+  <resultMap id="BaseResultMap" type="com.cn.my.bean.Diyform">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="tabname" jdbcType="VARCHAR" property="tabname" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="mailwarn" jdbcType="BIT" property="mailwarn" />
+    <result column="telwarn" jdbcType="BIT" property="telwarn" />
+    <result column="yzcode" jdbcType="BIT" property="yzcode" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, tabname, remark, mailwarn, telwarn, yzcode, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_diyform
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_diyform
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.my.bean.Diyform">
+    insert into t_diyform (id, title, tabname, 
+      remark, mailwarn, telwarn, 
+      yzcode, status)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{tabname,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{mailwarn,jdbcType=BIT}, #{telwarn,jdbcType=BIT}, 
+      #{yzcode,jdbcType=BIT}, #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.my.bean.Diyform">
+    insert into t_diyform
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="tabname != null">
+        tabname,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="mailwarn != null">
+        mailwarn,
+      </if>
+      <if test="telwarn != null">
+        telwarn,
+      </if>
+      <if test="yzcode != null">
+        yzcode,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="tabname != null">
+        #{tabname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mailwarn != null">
+        #{mailwarn,jdbcType=BIT},
+      </if>
+      <if test="telwarn != null">
+        #{telwarn,jdbcType=BIT},
+      </if>
+      <if test="yzcode != null">
+        #{yzcode,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.Diyform">
+    update t_diyform
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="tabname != null">
+        tabname = #{tabname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mailwarn != null">
+        mailwarn = #{mailwarn,jdbcType=BIT},
+      </if>
+      <if test="telwarn != null">
+        telwarn = #{telwarn,jdbcType=BIT},
+      </if>
+      <if test="yzcode != null">
+        yzcode = #{yzcode,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.my.bean.Diyform">
+    update t_diyform
+    set title = #{title,jdbcType=VARCHAR},
+      tabname = #{tabname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      mailwarn = #{mailwarn,jdbcType=BIT},
+      telwarn = #{telwarn,jdbcType=BIT},
+      yzcode = #{yzcode,jdbcType=BIT},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

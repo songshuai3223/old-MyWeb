@@ -7,9 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @ComponentScan(basePackages = "com.cn.my")
 @Component
 @SpringBootApplication
-@EnableTransactionManagement
 @ServletComponentScan
 public class ServiceApplication {
     @Autowired
@@ -32,10 +29,6 @@ public class ServiceApplication {
         System.out.print("");
     }
 
-    @RequestMapping("/")
-    public String test(){
-        return "success";
-    }
     @RequestMapping("/set")
     public String set(String key,String value){
         cacheUtil.put2Cache(key,value);

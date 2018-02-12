@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.my.dao.BlockMapper">
+  <resultMap id="BaseResultMap" type="com.cn.my.bean.Block">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="BIT" property="type" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cn.my.bean.BlockWithBLOBs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cid, title, type
+  </sql>
+  <sql id="Blob_Column_List">
+    content, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_block
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_block
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.my.bean.BlockWithBLOBs">
+    insert into t_block (id, cid, title, 
+      type, content, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{type,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.my.bean.BlockWithBLOBs">
+    insert into t_block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.BlockWithBLOBs">
+    update t_block
+    <set>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.my.bean.BlockWithBLOBs">
+    update t_block
+    set cid = #{cid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      content = #{content,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.my.bean.Block">
+    update t_block
+    set cid = #{cid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
