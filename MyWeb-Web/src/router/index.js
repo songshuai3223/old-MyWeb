@@ -81,6 +81,7 @@ export const asyncRouterMap = [
       {path: '/test',name: 'test',icon:"android-list",component: _import('test')},
       {path: '/myexample',name: '我的任务',icon:"android-list", component: _import('myexample')},
       {path: '/codelist',name: '代码表管理',icon:"android-list", component: _import('codelist')},
+        {path: '/MyTable',name: '我的表格',icon:"android-list", component: _import('MyTable')},
 
     ]
   },
