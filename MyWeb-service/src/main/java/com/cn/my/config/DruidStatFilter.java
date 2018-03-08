@@ -1,4 +1,4 @@
-package com.cn.my.util;
+package com.cn.my.config;
 
 import com.alibaba.druid.support.http.WebStatFilter;
 

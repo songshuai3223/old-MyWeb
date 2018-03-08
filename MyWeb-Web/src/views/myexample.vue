@@ -80,8 +80,9 @@
             </div>
         </div>
         <div>
+            <h5 class="title">查询结果</h5>
             <div style="position:relative;">
-                <Table  :columns="columns7" :data="page_video_list" ref="table"></Table>
+                <Table  :columns="columns7" :data="video_list" ref="table"></Table>
                 <div style="position:absolute;top:0px;width:100%;height:100%;display: flex;
                             align-items: center;
                             justify-content: center;background: rgba(210, 216, 222, 0.5);" v-if="list_loadding">
@@ -90,13 +91,16 @@
                 </div>
             </div>
 
-            <Page :total="this.video_list.length" show-total @on-change="setInitPage" style="text-align:right;margin-top:50px"></Page>
+            <!--<Page :total="this.video_list.length" show-total @on-change="setInitPage" style="text-align:right;margin-top:50px"></Page>-->
+            <div class="pull-right">
+                <boot-page v-ref:page :async="false" :data="lists" :lens="lenArr" :page-len="pageLen" :param="param"></boot-page>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-
+    import bootPage from './components/BootPage.vue'
     var vue;
     var uploader;
 
@@ -340,6 +344,9 @@
                 ],//cloumn
             }//return
         },//data
+        components: {
+            bootPage
+        },
         methods: {
             remove (index) {
                 this.video_list.splice(index, 1);
@@ -381,7 +388,7 @@
 
 
 <style type="text/css" scoped>
-    .title{ background-color: #20a8d8; font-size: large; height: 30px; text-justify: auto}
+    .title{ background-color: #2db7f5; font-size: small; height: 30px; text-align: left;height:25px;line-height:25px;overflow:hidden; color: white;}
     .ivu-tag-dot{
         border: none!important;
     }

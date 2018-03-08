@@ -11,7 +11,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * Created by gcb on 2018/1/15.
  */
 @Configuration
-public class JedisUtil {
+public class RedisConfig {
     @Value("${spring.redis.cluster.nodes}")
     private String serverNodes;
 

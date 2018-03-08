@@ -1,6 +1,9 @@
 <!-- 表格分页组件 -->
 <template>
     <nav class="boot-nav">
+        <div class="page-total">
+            显示第 <span v-text="pageTotal"></span> 至第项结果，共项
+        </div>
         <ul class="pagination boot-page">
             <li>
                 <a href="javascript:void(0)" aria-label="Previous" @click="onFirstClick()">
