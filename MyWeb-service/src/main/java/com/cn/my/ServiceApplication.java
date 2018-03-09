@@ -8,8 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * Created by Administrator on 2018/1/12 0012.
@@ -27,6 +28,19 @@ public class ServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceApplication.class, args);
         System.out.print("");
+    }
+
+    @RequestMapping(value = "/testget",method = RequestMethod.GET)
+    public String home1(){
+        System.out.println(new Date());
+        return "This is a test";
+    }
+
+    @RequestMapping(value = "/testpost",method = RequestMethod.POST)
+    @ResponseBody
+    public String home2(@RequestParam(value = "str") String str){
+        System.out.println(str);
+        return str.toUpperCase();
     }
 
     @RequestMapping("/set")
