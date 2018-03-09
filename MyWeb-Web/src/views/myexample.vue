@@ -73,8 +73,8 @@
                     </Row>
 
                     <Row>
-                        <Button type="success">查询</Button>
-                        <Button type="info">清空条件</Button>
+                        <Button type="success" @click="testget">查询</Button>
+                        <Button type="info" @click="testpost">清空条件</Button>
                     </Row>
                 </Form>
             </div>
@@ -348,6 +348,20 @@
             bootPage
         },
         methods: {
+            testget(){
+                this.$http.get("http://localhost:9090/myweb/testget").then(response=>{
+                    this.$Message.info(response.bodyText);
+                },response=>{
+                    this.$Message.error('This is a info tip');
+                });
+            },
+            testpost(){
+                this.$http.post("http://localhost:9090/myweb/testpost",{"str":"test"}).then(response=>{
+                    this.$Message.info(response.bodyText);
+                },response=>{
+                    this.$Message.error('This is a info tip');
+                });
+            },
             remove (index) {
                 this.video_list.splice(index, 1);
             },

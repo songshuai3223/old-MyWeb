@@ -209,7 +209,6 @@
 </script>
 
 <style>
- @import url('./assets/css/bootstrap.min.css');
     .box {
         padding: 100px;
     }
