@@ -38,7 +38,7 @@ public class ServiceApplication {
 
     @RequestMapping(value = "/testpost",method = RequestMethod.POST)
     @ResponseBody
-    public String home2(@RequestParam(value = "str") String str){
+    public String home2(@RequestParam("str")String str){
         System.out.println(str);
         return str.toUpperCase();
     }
