@@ -9,6 +9,7 @@ import './login.js'
 import './ui.js' 
 Vue.config.productionTip = false;
 Vue.use(resource);
+Vue.http.options.emulateJSON=true;
 var vm=new Vue({
   el: '#app',
   router,

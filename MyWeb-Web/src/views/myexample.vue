@@ -355,11 +355,13 @@
                     this.$Message.error('This is a info tip');
                 });
             },
-            testpost(){
+            testpost() {
                 this.$http.post("http://localhost:9090/myweb/testpost",{"str":"test"}).then(response=>{
                     this.$Message.info(response.bodyText);
+                    console.log(response);
                 },response=>{
                     this.$Message.error('This is a info tip');
+                    console.log(response);
                 });
             },
             remove (index) {
