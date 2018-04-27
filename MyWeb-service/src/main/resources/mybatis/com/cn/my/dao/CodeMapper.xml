@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.my.dao.CodeMapper">
+  <resultMap id="BaseResultMap" type="com.cn.my.bean.Code">
+    <id column="code_id" jdbcType="BIGINT" property="codeId" />
+    <result column="code_name_cn" jdbcType="VARCHAR" property="codeNameCn" />
+    <result column="code_name_en" jdbcType="VARCHAR" property="codeNameEn" />
+    <result column="code_desc" jdbcType="VARCHAR" property="codeDesc" />
+    <result column="code_status" jdbcType="BIT" property="codeStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    code_id, code_name_cn, code_name_en, code_desc, code_status, create_time, create_by, 
+    update_date, update_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_code
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_code
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cn.my.bean.Code">
+    insert into sys_code (code_id, code_name_cn, code_name_en, 
+      code_desc, code_status, create_time, 
+      create_by, update_date, update_by
+      )
+    values (#{codeId,jdbcType=BIGINT}, #{codeNameCn,jdbcType=VARCHAR}, #{codeNameEn,jdbcType=VARCHAR}, 
+      #{codeDesc,jdbcType=VARCHAR}, #{codeStatus,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.my.bean.Code">
+    insert into sys_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codeId != null">
+        code_id,
+      </if>
+      <if test="codeNameCn != null">
+        code_name_cn,
+      </if>
+      <if test="codeNameEn != null">
+        code_name_en,
+      </if>
+      <if test="codeDesc != null">
+        code_desc,
+      </if>
+      <if test="codeStatus != null">
+        code_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codeId != null">
+        #{codeId,jdbcType=BIGINT},
+      </if>
+      <if test="codeNameCn != null">
+        #{codeNameCn,jdbcType=VARCHAR},
+      </if>
+      <if test="codeNameEn != null">
+        #{codeNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="codeDesc != null">
+        #{codeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="codeStatus != null">
+        #{codeStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.my.bean.Code">
+    update sys_code
+    <set>
+      <if test="codeNameCn != null">
+        code_name_cn = #{codeNameCn,jdbcType=VARCHAR},
+      </if>
+      <if test="codeNameEn != null">
+        code_name_en = #{codeNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="codeDesc != null">
+        code_desc = #{codeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="codeStatus != null">
+        code_status = #{codeStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.my.bean.Code">
+    update sys_code
+    set code_name_cn = #{codeNameCn,jdbcType=VARCHAR},
+      code_name_en = #{codeNameEn,jdbcType=VARCHAR},
+      code_desc = #{codeDesc,jdbcType=VARCHAR},
+      code_status = #{codeStatus,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT}
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </update>
+</mapper>
